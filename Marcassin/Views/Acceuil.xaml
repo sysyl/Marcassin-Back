@@ -1,0 +1,38 @@
+﻿<Page x:Class="Marcassin.Views.Acceuil"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Marcassin.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Marcassin" Height="auto" Width="auto" Foreground="{x:Null}" FontFamily="Times New Roman" FontSize="20" Background="#FF999999">
+    <Grid Margin="10,10,10,10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="10*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+        <Grid.Background>
+            <ImageBrush ImageSource="..\Ressources\blanc.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <Image Source="..\Ressources\Logo2.jpg" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="0" Grid.RowSpan="4"/>
+        <Image Name="btn_admins" Source="..\Ressources\BoutonAdmins.jpg" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" Grid.RowSpan="1" Cursor="Hand" MouseLeftButtonUp="btn_admins_MouseLeftButtonUp" MouseEnter="btn_admins_MouseEnter" MouseLeave="btn_admins_MouseLeave"/>
+        <Image Name="btn_badges" Source="..\Ressources\BoutonBadges.jpg" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="4" Grid.RowSpan="1" Cursor="Hand" MouseLeftButtonUp="btn_badges_MouseLeftButtonUp" MouseEnter="btn_badges_MouseEnter" MouseLeave="btn_badges_MouseLeave"/>
+        <Image Name="btn_competences" Source="..\Ressources\BoutonCompetences.jpg" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="4" Grid.RowSpan="1" Cursor="Hand" MouseLeftButtonUp="btn_competences_MouseLeftButtonUp" MouseEnter="btn_competences_MouseEnter" MouseLeave="btn_competences_MouseLeave"/>
+        <Image Name="btn_cours" Source="..\Ressources\BoutonCours.jpg" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5" Grid.RowSpan="1" Cursor="Hand" MouseLeftButtonUp="btn_cours_MouseLeftButtonUp_1" MouseEnter="btn_cours_MouseEnter" MouseLeave="btn_cours_MouseLeave"/>
+        <Image Name="btn_utilisateurs" Source="..\Ressources\BoutonUtilisateurs.jpg" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="5" Grid.RowSpan="1" Cursor="Hand" MouseLeftButtonUp="btn_utilisateurs_MouseLeftButtonUp_1" MouseEnter="btn_utilisateurs_MouseEnter" MouseLeave="btn_utilisateurs_MouseLeave"/>
+        <Image Name="btn_langues" Source="..\Ressources\BoutonLangues.jpg" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="5" Grid.RowSpan="1" Cursor="Hand" MouseLeftButtonUp="btn_langues_MouseLeftButtonUp" MouseEnter="btn_langues_MouseEnter" MouseLeave="btn_langues_MouseLeave"/>
+    </Grid>
+</Page>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="31cb0a1029aa4346a771b7413a0fff03" Name="Diagram1" ZoomLevel="79">
+        <EntityTypeShape EntityType="MarcassinModel1.Admin" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarcassinModel1.Badge" Width="1.5" PointX="7.125" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarcassinModel1.ChatRoom" Width="1.5" PointX="2.625" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarcassinModel1.Competence" Width="1.5" PointX="10.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarcassinModel1.Cour" Width="1.5" PointX="4.375" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarcassinModel1.Entreprise" Width="1.5" PointX="5.5" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarcassinModel1.Langue" Width="1.5" PointX="11" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarcassinModel1.Message2" Width="1.5" PointX="2.625" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarcassinModel1.Niveau" Width="1.5" PointX="8.875" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarcassinModel1.Note" Width="1.5" PointX="8.5" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarcassinModel1.Pay" Width="1.5" PointX="3.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarcassinModel1.Relation_TCN" Width="1.5" PointX="8.5" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarcassinModel1.Relation_UCNi" Width="1.5" PointX="8.875" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarcassinModel1.Utilisateur" Width="1.5" PointX="6.25" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarcassinModel1.Ville" Width="1.5" PointX="4.5" PointY="5.625" IsExpanded="true" />
+        <AssociationConnector Association="MarcassinModel1.FK_Badge_Langues" ManuallyRouted="false" />
+        <AssociationConnector Association="MarcassinModel1.FK_Cours_ChatRoom" ManuallyRouted="false" />
+        <AssociationConnector Association="MarcassinModel1.FK_Message2_ChatRoom" ManuallyRouted="false" />
+        <AssociationConnector Association="MarcassinModel1.FK_Competence_Competence" ManuallyRouted="false" />
+        <AssociationConnector Association="MarcassinModel1.FK_Competence_Langues" ManuallyRouted="false" />
+        <AssociationConnector Association="MarcassinModel1.FK_Cours_Competence" ManuallyRouted="false" />
+        <AssociationConnector Association="MarcassinModel1.FK_Relation_UCNi_Competence" ManuallyRouted="false" />
+        <AssociationConnector Association="MarcassinModel1.FK_Relation_TCN_Cours" ManuallyRouted="false" />
+        <AssociationConnector Association="MarcassinModel1.FK_Entreprise_Ville" ManuallyRouted="false" />
+        <AssociationConnector Association="MarcassinModel1.FK_Utilisateur_Entreprise" ManuallyRouted="false" />
+        <AssociationConnector Association="MarcassinModel1.FK_Relation_UCNi_Niveau" ManuallyRouted="false" />
+        <AssociationConnector Association="MarcassinModel1.FK_Relation_TCN_Note" ManuallyRouted="false" />
+        <AssociationConnector Association="MarcassinModel1.FK_Ville_Pays" ManuallyRouted="false" />
+        <AssociationConnector Association="MarcassinModel1.FK_Relation_TCN_Utilisateur" ManuallyRouted="false" />
+        <AssociationConnector Association="MarcassinModel1.FK_Relation_UCNi_Utilisateur" ManuallyRouted="false" />
+        <AssociationConnector Association="MarcassinModel1.FK_Utilisateur_Ville" ManuallyRouted="false" />
+        <AssociationConnector Association="MarcassinModel1.Relation_BCR" ManuallyRouted="false" />
+        <AssociationConnector Association="MarcassinModel1.Relation_BU" ManuallyRouted="false" >
+        </AssociationConnector>
+        <AssociationConnector Association="MarcassinModel1.Relation_UC" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MarcassinModel1.sysdiagram" Width="1.5" PointX="1.375" PointY="12.625" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

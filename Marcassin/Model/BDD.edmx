@@ -1,0 +1,1245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MarcassinModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="idAdmin" />
+          </Key>
+          <Property Name="idAdmin" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="prenomAdmin" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="nomAdmin" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="motDePasseAdmin" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Badge">
+          <Key>
+            <PropertyRef Name="id_Badge" />
+          </Key>
+          <Property Name="id_Badge" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nomBadge" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ref_Langues" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ChatRoom">
+          <Key>
+            <PropertyRef Name="idChatRoom" />
+          </Key>
+          <Property Name="idChatRoom" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nomduRoom" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Competence">
+          <Key>
+            <PropertyRef Name="idCompetence" />
+          </Key>
+          <Property Name="idCompetence" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nomCompetence" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="estActif" Type="bit" Nullable="false" />
+          <Property Name="ref_Competence" Type="int" />
+          <Property Name="ref_Langues" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cours">
+          <Key>
+            <PropertyRef Name="idCours" />
+          </Key>
+          <Property Name="idCours" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nomCours" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="dateCours" Type="date" Nullable="false" />
+          <Property Name="estFinit" Type="bit" Nullable="false" />
+          <Property Name="ref_ChatRoom" Type="int" Nullable="false" />
+          <Property Name="ref_Competence" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Entreprise">
+          <Key>
+            <PropertyRef Name="id_Entreprise" />
+          </Key>
+          <Property Name="id_Entreprise" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nomEntreprise" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ref_Villes" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Langues">
+          <Key>
+            <PropertyRef Name="idLangue" />
+          </Key>
+          <Property Name="idLangue" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nomLangue" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Message2">
+          <Key>
+            <PropertyRef Name="idMessage" />
+          </Key>
+          <Property Name="idMessage" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="contenu" Type="varchar(max)" Nullable="false" />
+          <Property Name="dateMessage" Type="date" Nullable="false" />
+          <Property Name="ref_ChatRoom" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Niveau">
+          <Key>
+            <PropertyRef Name="id_Niveau" />
+          </Key>
+          <Property Name="id_Niveau" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="niveau" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Note">
+          <Key>
+            <PropertyRef Name="id_Note" />
+          </Key>
+          <Property Name="id_Note" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="note" Type="int" />
+        </EntityType>
+        <EntityType Name="Pays">
+          <Key>
+            <PropertyRef Name="id_Pays" />
+          </Key>
+          <Property Name="id_Pays" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nomPays" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Relation_BCR">
+          <Key>
+            <PropertyRef Name="ref_Utilisateur" />
+            <PropertyRef Name="ref_ChatRoom" />
+          </Key>
+          <Property Name="ref_Utilisateur" Type="int" Nullable="false" />
+          <Property Name="ref_ChatRoom" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Relation_BU">
+          <Key>
+            <PropertyRef Name="ref_Badge" />
+            <PropertyRef Name="ref_Utilisateur" />
+          </Key>
+          <Property Name="ref_Badge" Type="int" Nullable="false" />
+          <Property Name="ref_Utilisateur" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Relation_TCN">
+          <Key>
+            <PropertyRef Name="ref_Tuteur" />
+            <PropertyRef Name="ref_Note" />
+            <PropertyRef Name="ref_Cours" />
+          </Key>
+          <Property Name="ref_Tuteur" Type="int" Nullable="false" />
+          <Property Name="ref_Note" Type="int" Nullable="false" />
+          <Property Name="ref_Cours" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Relation_UC">
+          <Key>
+            <PropertyRef Name="ref_Utilisateur" />
+            <PropertyRef Name="ref_Cours" />
+          </Key>
+          <Property Name="ref_Utilisateur" Type="int" Nullable="false" />
+          <Property Name="ref_Cours" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Relation_UCNi">
+          <Key>
+            <PropertyRef Name="ref_Utilisateur" />
+            <PropertyRef Name="ref_Niveau" />
+            <PropertyRef Name="ref_Competence" />
+          </Key>
+          <Property Name="ref_Utilisateur" Type="int" Nullable="false" />
+          <Property Name="ref_Niveau" Type="int" Nullable="false" />
+          <Property Name="ref_Competence" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Utilisateur">
+          <Key>
+            <PropertyRef Name="idUtilisateur" />
+          </Key>
+          <Property Name="idUtilisateur" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="prenomUtilisateur" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="nomUtilisateur" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ageUtilisateur" Type="int" Nullable="false" />
+          <Property Name="emailUtilisateur" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="lienLinkedinUtilisateur" Type="varchar" MaxLength="50" />
+          <Property Name="motDePasseUtilisateur" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="estTuteur" Type="bit" Nullable="false" />
+          <Property Name="estExterne" Type="bit" Nullable="false" />
+          <Property Name="estValide" Type="bit" Nullable="false" />
+          <Property Name="ref_Ville" Type="int" Nullable="false" />
+          <Property Name="ref_Entreprise" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ville">
+          <Key>
+            <PropertyRef Name="id_Ville" />
+          </Key>
+          <Property Name="id_Ville" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nomVille" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ref_Pays" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Badge_Langues">
+          <End Role="Langues" Type="Self.Langues" Multiplicity="1" />
+          <End Role="Badge" Type="Self.Badge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Langues">
+              <PropertyRef Name="idLangue" />
+            </Principal>
+            <Dependent Role="Badge">
+              <PropertyRef Name="ref_Langues" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Competence_Competence">
+          <End Role="Competence" Type="Self.Competence" Multiplicity="0..1" />
+          <End Role="Competence1" Type="Self.Competence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Competence">
+              <PropertyRef Name="idCompetence" />
+            </Principal>
+            <Dependent Role="Competence1">
+              <PropertyRef Name="ref_Competence" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Competence_Langues">
+          <End Role="Langues" Type="Self.Langues" Multiplicity="1" />
+          <End Role="Competence" Type="Self.Competence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Langues">
+              <PropertyRef Name="idLangue" />
+            </Principal>
+            <Dependent Role="Competence">
+              <PropertyRef Name="ref_Langues" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cours_ChatRoom">
+          <End Role="ChatRoom" Type="Self.ChatRoom" Multiplicity="1" />
+          <End Role="Cours" Type="Self.Cours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ChatRoom">
+              <PropertyRef Name="idChatRoom" />
+            </Principal>
+            <Dependent Role="Cours">
+              <PropertyRef Name="ref_ChatRoom" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cours_Competence">
+          <End Role="Competence" Type="Self.Competence" Multiplicity="1" />
+          <End Role="Cours" Type="Self.Cours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Competence">
+              <PropertyRef Name="idCompetence" />
+            </Principal>
+            <Dependent Role="Cours">
+              <PropertyRef Name="ref_Competence" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Entreprise_Ville">
+          <End Role="Ville" Type="Self.Ville" Multiplicity="1" />
+          <End Role="Entreprise" Type="Self.Entreprise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ville">
+              <PropertyRef Name="id_Ville" />
+            </Principal>
+            <Dependent Role="Entreprise">
+              <PropertyRef Name="ref_Villes" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Message2_ChatRoom">
+          <End Role="ChatRoom" Type="Self.ChatRoom" Multiplicity="1" />
+          <End Role="Message2" Type="Self.Message2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ChatRoom">
+              <PropertyRef Name="idChatRoom" />
+            </Principal>
+            <Dependent Role="Message2">
+              <PropertyRef Name="ref_ChatRoom" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Relation_BCR_ChatRoom">
+          <End Role="ChatRoom" Type="Self.ChatRoom" Multiplicity="1" />
+          <End Role="Relation_BCR" Type="Self.Relation_BCR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ChatRoom">
+              <PropertyRef Name="idChatRoom" />
+            </Principal>
+            <Dependent Role="Relation_BCR">
+              <PropertyRef Name="ref_ChatRoom" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Relation_BCR_Utilisateur">
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="1" />
+          <End Role="Relation_BCR" Type="Self.Relation_BCR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="idUtilisateur" />
+            </Principal>
+            <Dependent Role="Relation_BCR">
+              <PropertyRef Name="ref_Utilisateur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Relation_BU_Badge">
+          <End Role="Badge" Type="Self.Badge" Multiplicity="1" />
+          <End Role="Relation_BU" Type="Self.Relation_BU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Badge">
+              <PropertyRef Name="id_Badge" />
+            </Principal>
+            <Dependent Role="Relation_BU">
+              <PropertyRef Name="ref_Badge" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Relation_BU_Utilisateur">
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="1" />
+          <End Role="Relation_BU" Type="Self.Relation_BU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="idUtilisateur" />
+            </Principal>
+            <Dependent Role="Relation_BU">
+              <PropertyRef Name="ref_Utilisateur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Relation_TCN_Cours">
+          <End Role="Cours" Type="Self.Cours" Multiplicity="1" />
+          <End Role="Relation_TCN" Type="Self.Relation_TCN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cours">
+              <PropertyRef Name="idCours" />
+            </Principal>
+            <Dependent Role="Relation_TCN">
+              <PropertyRef Name="ref_Tuteur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Relation_TCN_Note">
+          <End Role="Note" Type="Self.Note" Multiplicity="1" />
+          <End Role="Relation_TCN" Type="Self.Relation_TCN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Note">
+              <PropertyRef Name="id_Note" />
+            </Principal>
+            <Dependent Role="Relation_TCN">
+              <PropertyRef Name="ref_Note" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Relation_TCN_Utilisateur">
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="1" />
+          <End Role="Relation_TCN" Type="Self.Relation_TCN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="idUtilisateur" />
+            </Principal>
+            <Dependent Role="Relation_TCN">
+              <PropertyRef Name="ref_Tuteur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Relation_UC_Cours">
+          <End Role="Cours" Type="Self.Cours" Multiplicity="1" />
+          <End Role="Relation_UC" Type="Self.Relation_UC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cours">
+              <PropertyRef Name="idCours" />
+            </Principal>
+            <Dependent Role="Relation_UC">
+              <PropertyRef Name="ref_Cours" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Relation_UC_Utilisateur">
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="1" />
+          <End Role="Relation_UC" Type="Self.Relation_UC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="idUtilisateur" />
+            </Principal>
+            <Dependent Role="Relation_UC">
+              <PropertyRef Name="ref_Utilisateur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Relation_UCNi_Competence">
+          <End Role="Competence" Type="Self.Competence" Multiplicity="1" />
+          <End Role="Relation_UCNi" Type="Self.Relation_UCNi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Competence">
+              <PropertyRef Name="idCompetence" />
+            </Principal>
+            <Dependent Role="Relation_UCNi">
+              <PropertyRef Name="ref_Competence" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Relation_UCNi_Niveau">
+          <End Role="Niveau" Type="Self.Niveau" Multiplicity="1" />
+          <End Role="Relation_UCNi" Type="Self.Relation_UCNi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Niveau">
+              <PropertyRef Name="id_Niveau" />
+            </Principal>
+            <Dependent Role="Relation_UCNi">
+              <PropertyRef Name="ref_Niveau" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Relation_UCNi_Utilisateur">
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="1" />
+          <End Role="Relation_UCNi" Type="Self.Relation_UCNi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="idUtilisateur" />
+            </Principal>
+            <Dependent Role="Relation_UCNi">
+              <PropertyRef Name="ref_Utilisateur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Utilisateur_Entreprise">
+          <End Role="Entreprise" Type="Self.Entreprise" Multiplicity="1" />
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entreprise">
+              <PropertyRef Name="id_Entreprise" />
+            </Principal>
+            <Dependent Role="Utilisateur">
+              <PropertyRef Name="ref_Entreprise" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Utilisateur_Ville">
+          <End Role="Ville" Type="Self.Ville" Multiplicity="1" />
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ville">
+              <PropertyRef Name="id_Ville" />
+            </Principal>
+            <Dependent Role="Utilisateur">
+              <PropertyRef Name="ref_Ville" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ville_Pays">
+          <End Role="Pays" Type="Self.Pays" Multiplicity="1" />
+          <End Role="Ville" Type="Self.Ville" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pays">
+              <PropertyRef Name="id_Pays" />
+            </Principal>
+            <Dependent Role="Ville">
+              <PropertyRef Name="ref_Pays" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MarcassinModel1StoreContainer">
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Badge" EntityType="Self.Badge" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ChatRoom" EntityType="Self.ChatRoom" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Competence" EntityType="Self.Competence" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cours" EntityType="Self.Cours" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Entreprise" EntityType="Self.Entreprise" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Langues" EntityType="Self.Langues" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Message2" EntityType="Self.Message2" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Niveau" EntityType="Self.Niveau" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Note" EntityType="Self.Note" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pays" EntityType="Self.Pays" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Relation_BCR" EntityType="Self.Relation_BCR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Relation_BU" EntityType="Self.Relation_BU" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Relation_TCN" EntityType="Self.Relation_TCN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Relation_UC" EntityType="Self.Relation_UC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Relation_UCNi" EntityType="Self.Relation_UCNi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Utilisateur" EntityType="Self.Utilisateur" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ville" EntityType="Self.Ville" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Badge_Langues" Association="Self.FK_Badge_Langues">
+            <End Role="Langues" EntitySet="Langues" />
+            <End Role="Badge" EntitySet="Badge" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Competence_Competence" Association="Self.FK_Competence_Competence">
+            <End Role="Competence" EntitySet="Competence" />
+            <End Role="Competence1" EntitySet="Competence" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Competence_Langues" Association="Self.FK_Competence_Langues">
+            <End Role="Langues" EntitySet="Langues" />
+            <End Role="Competence" EntitySet="Competence" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cours_ChatRoom" Association="Self.FK_Cours_ChatRoom">
+            <End Role="ChatRoom" EntitySet="ChatRoom" />
+            <End Role="Cours" EntitySet="Cours" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cours_Competence" Association="Self.FK_Cours_Competence">
+            <End Role="Competence" EntitySet="Competence" />
+            <End Role="Cours" EntitySet="Cours" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Entreprise_Ville" Association="Self.FK_Entreprise_Ville">
+            <End Role="Ville" EntitySet="Ville" />
+            <End Role="Entreprise" EntitySet="Entreprise" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Message2_ChatRoom" Association="Self.FK_Message2_ChatRoom">
+            <End Role="ChatRoom" EntitySet="ChatRoom" />
+            <End Role="Message2" EntitySet="Message2" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Relation_BCR_ChatRoom" Association="Self.FK_Relation_BCR_ChatRoom">
+            <End Role="ChatRoom" EntitySet="ChatRoom" />
+            <End Role="Relation_BCR" EntitySet="Relation_BCR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Relation_BCR_Utilisateur" Association="Self.FK_Relation_BCR_Utilisateur">
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
+            <End Role="Relation_BCR" EntitySet="Relation_BCR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Relation_BU_Badge" Association="Self.FK_Relation_BU_Badge">
+            <End Role="Badge" EntitySet="Badge" />
+            <End Role="Relation_BU" EntitySet="Relation_BU" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Relation_BU_Utilisateur" Association="Self.FK_Relation_BU_Utilisateur">
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
+            <End Role="Relation_BU" EntitySet="Relation_BU" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Relation_TCN_Cours" Association="Self.FK_Relation_TCN_Cours">
+            <End Role="Cours" EntitySet="Cours" />
+            <End Role="Relation_TCN" EntitySet="Relation_TCN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Relation_TCN_Note" Association="Self.FK_Relation_TCN_Note">
+            <End Role="Note" EntitySet="Note" />
+            <End Role="Relation_TCN" EntitySet="Relation_TCN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Relation_TCN_Utilisateur" Association="Self.FK_Relation_TCN_Utilisateur">
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
+            <End Role="Relation_TCN" EntitySet="Relation_TCN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Relation_UC_Cours" Association="Self.FK_Relation_UC_Cours">
+            <End Role="Cours" EntitySet="Cours" />
+            <End Role="Relation_UC" EntitySet="Relation_UC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Relation_UC_Utilisateur" Association="Self.FK_Relation_UC_Utilisateur">
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
+            <End Role="Relation_UC" EntitySet="Relation_UC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Relation_UCNi_Competence" Association="Self.FK_Relation_UCNi_Competence">
+            <End Role="Competence" EntitySet="Competence" />
+            <End Role="Relation_UCNi" EntitySet="Relation_UCNi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Relation_UCNi_Niveau" Association="Self.FK_Relation_UCNi_Niveau">
+            <End Role="Niveau" EntitySet="Niveau" />
+            <End Role="Relation_UCNi" EntitySet="Relation_UCNi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Relation_UCNi_Utilisateur" Association="Self.FK_Relation_UCNi_Utilisateur">
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
+            <End Role="Relation_UCNi" EntitySet="Relation_UCNi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Utilisateur_Entreprise" Association="Self.FK_Utilisateur_Entreprise">
+            <End Role="Entreprise" EntitySet="Entreprise" />
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Utilisateur_Ville" Association="Self.FK_Utilisateur_Ville">
+            <End Role="Ville" EntitySet="Ville" />
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ville_Pays" Association="Self.FK_Ville_Pays">
+            <End Role="Pays" EntitySet="Pays" />
+            <End Role="Ville" EntitySet="Ville" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MarcassinModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="idAdmin" />
+          </Key>
+          <Property Name="idAdmin" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="motDePasseAdmin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="prenomAdmin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nomAdmin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Badge">
+          <Key>
+            <PropertyRef Name="id_Badge" />
+          </Key>
+          <Property Name="id_Badge" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nomBadge" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ref_Langues" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Langue" Relationship="Self.FK_Badge_Langues" FromRole="Badge" ToRole="Langues" />
+          <NavigationProperty Name="Utilisateurs" Relationship="Self.Relation_BU" FromRole="Badge" ToRole="Utilisateur" />
+        </EntityType>
+        <EntityType Name="ChatRoom">
+          <Key>
+            <PropertyRef Name="idChatRoom" />
+          </Key>
+          <Property Name="idChatRoom" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nomduRoom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Cours" Relationship="Self.FK_Cours_ChatRoom" FromRole="ChatRoom" ToRole="Cours" />
+          <NavigationProperty Name="Message2" Relationship="Self.FK_Message2_ChatRoom" FromRole="ChatRoom" ToRole="Message2" />
+          <NavigationProperty Name="Utilisateurs" Relationship="Self.Relation_BCR" FromRole="ChatRoom" ToRole="Utilisateur" />
+        </EntityType>
+        <EntityType Name="Competence">
+          <Key>
+            <PropertyRef Name="idCompetence" />
+          </Key>
+          <Property Name="idCompetence" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nomCompetence" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estActif" Type="Boolean" Nullable="false" />
+          <Property Name="ref_Competence" Type="Int32" Nullable="true" />
+          <Property Name="ref_Langues" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Competence1" Relationship="MarcassinModel1.FK_Competence_Competence" FromRole="Competence" ToRole="Competence1" />
+          <NavigationProperty Name="Competence2" Relationship="MarcassinModel1.FK_Competence_Competence" FromRole="Competence" ToRole="Competence1" />
+          <NavigationProperty Name="Langue" Relationship="Self.FK_Competence_Langues" FromRole="Competence" ToRole="Langues" />
+          <NavigationProperty Name="Cours" Relationship="Self.FK_Cours_Competence" FromRole="Competence" ToRole="Cours" />
+          <NavigationProperty Name="Relation_UCNi" Relationship="Self.FK_Relation_UCNi_Competence" FromRole="Competence" ToRole="Relation_UCNi" />
+        </EntityType>
+        <EntityType Name="Cour">
+          <Key>
+            <PropertyRef Name="idCours" />
+          </Key>
+          <Property Name="idCours" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nomCours" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dateCours" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="estFinit" Type="Boolean" Nullable="false" />
+          <Property Name="ref_ChatRoom" Type="Int32" Nullable="false" />
+          <Property Name="ref_Competence" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ChatRoom" Relationship="Self.FK_Cours_ChatRoom" FromRole="Cours" ToRole="ChatRoom" />
+          <NavigationProperty Name="Competence" Relationship="Self.FK_Cours_Competence" FromRole="Cours" ToRole="Competence" />
+          <NavigationProperty Name="Relation_TCN" Relationship="Self.FK_Relation_TCN_Cours" FromRole="Cours" ToRole="Relation_TCN" />
+          <NavigationProperty Name="Utilisateurs" Relationship="Self.Relation_UC" FromRole="Cours" ToRole="Utilisateur" />
+        </EntityType>
+        <EntityType Name="Entreprise">
+          <Key>
+            <PropertyRef Name="id_Entreprise" />
+          </Key>
+          <Property Name="id_Entreprise" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nomEntreprise" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ref_Villes" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Ville" Relationship="Self.FK_Entreprise_Ville" FromRole="Entreprise" ToRole="Ville" />
+          <NavigationProperty Name="Utilisateurs" Relationship="Self.FK_Utilisateur_Entreprise" FromRole="Entreprise" ToRole="Utilisateur" />
+        </EntityType>
+        <EntityType Name="Langue">
+          <Key>
+            <PropertyRef Name="idLangue" />
+          </Key>
+          <Property Name="idLangue" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nomLangue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Badges" Relationship="Self.FK_Badge_Langues" FromRole="Langues" ToRole="Badge" />
+          <NavigationProperty Name="Competences" Relationship="Self.FK_Competence_Langues" FromRole="Langues" ToRole="Competence" />
+        </EntityType>
+        <EntityType Name="Message2">
+          <Key>
+            <PropertyRef Name="idMessage" />
+          </Key>
+          <Property Name="idMessage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="contenu" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dateMessage" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ref_ChatRoom" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ChatRoom" Relationship="Self.FK_Message2_ChatRoom" FromRole="Message2" ToRole="ChatRoom" />
+        </EntityType>
+        <EntityType Name="Niveau">
+          <Key>
+            <PropertyRef Name="id_Niveau" />
+          </Key>
+          <Property Name="id_Niveau" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="niveau1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Relation_UCNi" Relationship="Self.FK_Relation_UCNi_Niveau" FromRole="Niveau" ToRole="Relation_UCNi" />
+        </EntityType>
+        <EntityType Name="Note">
+          <Key>
+            <PropertyRef Name="id_Note" />
+          </Key>
+          <Property Name="id_Note" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="note1" Type="Int32" />
+          <NavigationProperty Name="Relation_TCN" Relationship="Self.FK_Relation_TCN_Note" FromRole="Note" ToRole="Relation_TCN" />
+        </EntityType>
+        <EntityType Name="Pay">
+          <Key>
+            <PropertyRef Name="id_Pays" />
+          </Key>
+          <Property Name="id_Pays" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nomPays" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Villes" Relationship="Self.FK_Ville_Pays" FromRole="Pays" ToRole="Ville" />
+        </EntityType>
+        <EntityType Name="Relation_TCN">
+          <Key>
+            <PropertyRef Name="ref_Tuteur" />
+            <PropertyRef Name="ref_Note" />
+            <PropertyRef Name="ref_Cours" />
+          </Key>
+          <Property Name="ref_Tuteur" Type="Int32" Nullable="false" />
+          <Property Name="ref_Note" Type="Int32" Nullable="false" />
+          <Property Name="ref_Cours" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cour" Relationship="Self.FK_Relation_TCN_Cours" FromRole="Relation_TCN" ToRole="Cours" />
+          <NavigationProperty Name="Note" Relationship="Self.FK_Relation_TCN_Note" FromRole="Relation_TCN" ToRole="Note" />
+          <NavigationProperty Name="Utilisateur" Relationship="Self.FK_Relation_TCN_Utilisateur" FromRole="Relation_TCN" ToRole="Utilisateur" />
+        </EntityType>
+        <EntityType Name="Relation_UCNi">
+          <Key>
+            <PropertyRef Name="ref_Utilisateur" />
+            <PropertyRef Name="ref_Niveau" />
+            <PropertyRef Name="ref_Competence" />
+          </Key>
+          <Property Name="ref_Utilisateur" Type="Int32" Nullable="false" />
+          <Property Name="ref_Niveau" Type="Int32" Nullable="false" />
+          <Property Name="ref_Competence" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Competence" Relationship="Self.FK_Relation_UCNi_Competence" FromRole="Relation_UCNi" ToRole="Competence" />
+          <NavigationProperty Name="Niveau" Relationship="Self.FK_Relation_UCNi_Niveau" FromRole="Relation_UCNi" ToRole="Niveau" />
+          <NavigationProperty Name="Utilisateur" Relationship="Self.FK_Relation_UCNi_Utilisateur" FromRole="Relation_UCNi" ToRole="Utilisateur" />
+        </EntityType>
+        <EntityType Name="Utilisateur">
+          <Key>
+            <PropertyRef Name="idUtilisateur" />
+          </Key>
+          <Property Name="idUtilisateur" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="prenomUtilisateur" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nomUtilisateur" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ageUtilisateur" Type="Int32" Nullable="false" />
+          <Property Name="emailUtilisateur" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="lienLinkedinUtilisateur" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="motDePasseUtilisateur" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estTuteur" Type="Boolean" Nullable="false" />
+          <Property Name="estExterne" Type="Boolean" Nullable="false" />
+          <Property Name="estValide" Type="Boolean" Nullable="false" />
+          <Property Name="ref_Ville" Type="Int32" Nullable="false" />
+          <Property Name="ref_Entreprise" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Entreprise" Relationship="Self.FK_Utilisateur_Entreprise" FromRole="Utilisateur" ToRole="Entreprise" />
+          <NavigationProperty Name="Relation_TCN" Relationship="Self.FK_Relation_TCN_Utilisateur" FromRole="Utilisateur" ToRole="Relation_TCN" />
+          <NavigationProperty Name="Relation_UCNi" Relationship="Self.FK_Relation_UCNi_Utilisateur" FromRole="Utilisateur" ToRole="Relation_UCNi" />
+          <NavigationProperty Name="Ville" Relationship="Self.FK_Utilisateur_Ville" FromRole="Utilisateur" ToRole="Ville" />
+          <NavigationProperty Name="ChatRooms" Relationship="Self.Relation_BCR" FromRole="Utilisateur" ToRole="ChatRoom" />
+          <NavigationProperty Name="Badges" Relationship="Self.Relation_BU" FromRole="Utilisateur" ToRole="Badge" />
+          <NavigationProperty Name="Cours" Relationship="Self.Relation_UC" FromRole="Utilisateur" ToRole="Cours" />
+        </EntityType>
+        <EntityType Name="Ville">
+          <Key>
+            <PropertyRef Name="id_Ville" />
+          </Key>
+          <Property Name="id_Ville" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nomVille" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ref_Pays" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Entreprises" Relationship="Self.FK_Entreprise_Ville" FromRole="Ville" ToRole="Entreprise" />
+          <NavigationProperty Name="Pay" Relationship="Self.FK_Ville_Pays" FromRole="Ville" ToRole="Pays" />
+          <NavigationProperty Name="Utilisateurs" Relationship="Self.FK_Utilisateur_Ville" FromRole="Ville" ToRole="Utilisateur" />
+        </EntityType>
+        <Association Name="FK_Badge_Langues">
+          <End Role="Langues" Type="Self.Langue" Multiplicity="1" />
+          <End Role="Badge" Type="Self.Badge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Langues">
+              <PropertyRef Name="idLangue" />
+            </Principal>
+            <Dependent Role="Badge">
+              <PropertyRef Name="ref_Langues" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cours_ChatRoom">
+          <End Role="ChatRoom" Type="Self.ChatRoom" Multiplicity="1" />
+          <End Role="Cours" Type="Self.Cour" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ChatRoom">
+              <PropertyRef Name="idChatRoom" />
+            </Principal>
+            <Dependent Role="Cours">
+              <PropertyRef Name="ref_ChatRoom" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Message2_ChatRoom">
+          <End Role="ChatRoom" Type="Self.ChatRoom" Multiplicity="1" />
+          <End Role="Message2" Type="Self.Message2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ChatRoom">
+              <PropertyRef Name="idChatRoom" />
+            </Principal>
+            <Dependent Role="Message2">
+              <PropertyRef Name="ref_ChatRoom" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Competence_Competence">
+          <End Role="Competence" Type="Self.Competence" Multiplicity="0..1" />
+          <End Role="Competence1" Type="Self.Competence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Competence">
+              <PropertyRef Name="idCompetence" />
+            </Principal>
+            <Dependent Role="Competence1">
+              <PropertyRef Name="ref_Competence" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Competence_Langues">
+          <End Role="Langues" Type="Self.Langue" Multiplicity="1" />
+          <End Role="Competence" Type="Self.Competence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Langues">
+              <PropertyRef Name="idLangue" />
+            </Principal>
+            <Dependent Role="Competence">
+              <PropertyRef Name="ref_Langues" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cours_Competence">
+          <End Role="Competence" Type="Self.Competence" Multiplicity="1" />
+          <End Role="Cours" Type="Self.Cour" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Competence">
+              <PropertyRef Name="idCompetence" />
+            </Principal>
+            <Dependent Role="Cours">
+              <PropertyRef Name="ref_Competence" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Relation_UCNi_Competence">
+          <End Role="Competence" Type="Self.Competence" Multiplicity="1" />
+          <End Role="Relation_UCNi" Type="Self.Relation_UCNi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Competence">
+              <PropertyRef Name="idCompetence" />
+            </Principal>
+            <Dependent Role="Relation_UCNi">
+              <PropertyRef Name="ref_Competence" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Relation_TCN_Cours">
+          <End Role="Cours" Type="Self.Cour" Multiplicity="1" />
+          <End Role="Relation_TCN" Type="Self.Relation_TCN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cours">
+              <PropertyRef Name="idCours" />
+            </Principal>
+            <Dependent Role="Relation_TCN">
+              <PropertyRef Name="ref_Tuteur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Entreprise_Ville">
+          <End Role="Ville" Type="Self.Ville" Multiplicity="1" />
+          <End Role="Entreprise" Type="Self.Entreprise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ville">
+              <PropertyRef Name="id_Ville" />
+            </Principal>
+            <Dependent Role="Entreprise">
+              <PropertyRef Name="ref_Villes" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Utilisateur_Entreprise">
+          <End Role="Entreprise" Type="Self.Entreprise" Multiplicity="1" />
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entreprise">
+              <PropertyRef Name="id_Entreprise" />
+            </Principal>
+            <Dependent Role="Utilisateur">
+              <PropertyRef Name="ref_Entreprise" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Relation_UCNi_Niveau">
+          <End Role="Niveau" Type="Self.Niveau" Multiplicity="1" />
+          <End Role="Relation_UCNi" Type="Self.Relation_UCNi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Niveau">
+              <PropertyRef Name="id_Niveau" />
+            </Principal>
+            <Dependent Role="Relation_UCNi">
+              <PropertyRef Name="ref_Niveau" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Relation_TCN_Note">
+          <End Role="Note" Type="Self.Note" Multiplicity="1" />
+          <End Role="Relation_TCN" Type="Self.Relation_TCN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Note">
+              <PropertyRef Name="id_Note" />
+            </Principal>
+            <Dependent Role="Relation_TCN">
+              <PropertyRef Name="ref_Note" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ville_Pays">
+          <End Role="Pays" Type="Self.Pay" Multiplicity="1" />
+          <End Role="Ville" Type="Self.Ville" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pays">
+              <PropertyRef Name="id_Pays" />
+            </Principal>
+            <Dependent Role="Ville">
+              <PropertyRef Name="ref_Pays" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Relation_TCN_Utilisateur">
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="1" />
+          <End Role="Relation_TCN" Type="Self.Relation_TCN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="idUtilisateur" />
+            </Principal>
+            <Dependent Role="Relation_TCN">
+              <PropertyRef Name="ref_Tuteur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Relation_UCNi_Utilisateur">
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="1" />
+          <End Role="Relation_UCNi" Type="Self.Relation_UCNi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="idUtilisateur" />
+            </Principal>
+            <Dependent Role="Relation_UCNi">
+              <PropertyRef Name="ref_Utilisateur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Utilisateur_Ville">
+          <End Role="Ville" Type="Self.Ville" Multiplicity="1" />
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ville">
+              <PropertyRef Name="id_Ville" />
+            </Principal>
+            <Dependent Role="Utilisateur">
+              <PropertyRef Name="ref_Ville" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relation_BCR">
+          <End Role="ChatRoom" Type="Self.ChatRoom" Multiplicity="*" />
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="*" />
+        </Association>
+        <Association Name="Relation_BU">
+          <End Role="Badge" Type="Self.Badge" Multiplicity="*" />
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="*" />
+        </Association>
+        <Association Name="Relation_UC">
+          <End Role="Cours" Type="Self.Cour" Multiplicity="*" />
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="MarcassinEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="Self.Admin" />
+          <EntitySet Name="Badges" EntityType="Self.Badge" />
+          <EntitySet Name="ChatRooms" EntityType="Self.ChatRoom" />
+          <EntitySet Name="Competences" EntityType="Self.Competence" />
+          <EntitySet Name="Cours" EntityType="Self.Cour" />
+          <EntitySet Name="Entreprises" EntityType="Self.Entreprise" />
+          <EntitySet Name="Langues" EntityType="Self.Langue" />
+          <EntitySet Name="Message2" EntityType="Self.Message2" />
+          <EntitySet Name="Niveaux" EntityType="Self.Niveau" />
+          <EntitySet Name="Notes" EntityType="Self.Note" />
+          <EntitySet Name="Pays" EntityType="Self.Pay" />
+          <EntitySet Name="Relation_TCN" EntityType="Self.Relation_TCN" />
+          <EntitySet Name="Relation_UCNi" EntityType="Self.Relation_UCNi" />
+          <EntitySet Name="Utilisateurs" EntityType="Self.Utilisateur" />
+          <EntitySet Name="Villes" EntityType="Self.Ville" />
+          <AssociationSet Name="FK_Badge_Langues" Association="Self.FK_Badge_Langues">
+            <End Role="Langues" EntitySet="Langues" />
+            <End Role="Badge" EntitySet="Badges" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cours_ChatRoom" Association="Self.FK_Cours_ChatRoom">
+            <End Role="ChatRoom" EntitySet="ChatRooms" />
+            <End Role="Cours" EntitySet="Cours" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Message2_ChatRoom" Association="Self.FK_Message2_ChatRoom">
+            <End Role="ChatRoom" EntitySet="ChatRooms" />
+            <End Role="Message2" EntitySet="Message2" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Competence_Competence" Association="Self.FK_Competence_Competence">
+            <End Role="Competence" EntitySet="Competences" />
+            <End Role="Competence1" EntitySet="Competences" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Competence_Langues" Association="Self.FK_Competence_Langues">
+            <End Role="Langues" EntitySet="Langues" />
+            <End Role="Competence" EntitySet="Competences" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cours_Competence" Association="Self.FK_Cours_Competence">
+            <End Role="Competence" EntitySet="Competences" />
+            <End Role="Cours" EntitySet="Cours" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Relation_UCNi_Competence" Association="Self.FK_Relation_UCNi_Competence">
+            <End Role="Competence" EntitySet="Competences" />
+            <End Role="Relation_UCNi" EntitySet="Relation_UCNi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Relation_TCN_Cours" Association="Self.FK_Relation_TCN_Cours">
+            <End Role="Cours" EntitySet="Cours" />
+            <End Role="Relation_TCN" EntitySet="Relation_TCN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Entreprise_Ville" Association="Self.FK_Entreprise_Ville">
+            <End Role="Ville" EntitySet="Villes" />
+            <End Role="Entreprise" EntitySet="Entreprises" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Utilisateur_Entreprise" Association="Self.FK_Utilisateur_Entreprise">
+            <End Role="Entreprise" EntitySet="Entreprises" />
+            <End Role="Utilisateur" EntitySet="Utilisateurs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Relation_UCNi_Niveau" Association="Self.FK_Relation_UCNi_Niveau">
+            <End Role="Niveau" EntitySet="Niveaux" />
+            <End Role="Relation_UCNi" EntitySet="Relation_UCNi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Relation_TCN_Note" Association="Self.FK_Relation_TCN_Note">
+            <End Role="Note" EntitySet="Notes" />
+            <End Role="Relation_TCN" EntitySet="Relation_TCN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ville_Pays" Association="Self.FK_Ville_Pays">
+            <End Role="Pays" EntitySet="Pays" />
+            <End Role="Ville" EntitySet="Villes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Relation_TCN_Utilisateur" Association="Self.FK_Relation_TCN_Utilisateur">
+            <End Role="Utilisateur" EntitySet="Utilisateurs" />
+            <End Role="Relation_TCN" EntitySet="Relation_TCN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Relation_UCNi_Utilisateur" Association="Self.FK_Relation_UCNi_Utilisateur">
+            <End Role="Utilisateur" EntitySet="Utilisateurs" />
+            <End Role="Relation_UCNi" EntitySet="Relation_UCNi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Utilisateur_Ville" Association="Self.FK_Utilisateur_Ville">
+            <End Role="Ville" EntitySet="Villes" />
+            <End Role="Utilisateur" EntitySet="Utilisateurs" />
+          </AssociationSet>
+          <AssociationSet Name="Relation_BCR" Association="Self.Relation_BCR">
+            <End Role="ChatRoom" EntitySet="ChatRooms" />
+            <End Role="Utilisateur" EntitySet="Utilisateurs" />
+          </AssociationSet>
+          <AssociationSet Name="Relation_BU" Association="Self.Relation_BU">
+            <End Role="Badge" EntitySet="Badges" />
+            <End Role="Utilisateur" EntitySet="Utilisateurs" />
+          </AssociationSet>
+          <AssociationSet Name="Relation_UC" Association="Self.Relation_UC">
+            <End Role="Cours" EntitySet="Cours" />
+            <End Role="Utilisateur" EntitySet="Utilisateurs" />
+          </AssociationSet>
+          <EntitySet Name="sysdiagrams" EntityType="MarcassinModel1.sysdiagram" />
+        </EntityContainer>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MarcassinModel1StoreContainer" CdmEntityContainer="MarcassinEntities1">
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="MarcassinModel1.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="idAdmin" ColumnName="idAdmin" />
+                <ScalarProperty Name="motDePasseAdmin" ColumnName="motDePasseAdmin" />
+                <ScalarProperty Name="prenomAdmin" ColumnName="prenomAdmin" />
+                <ScalarProperty Name="nomAdmin" ColumnName="nomAdmin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Badges">
+            <EntityTypeMapping TypeName="MarcassinModel1.Badge">
+              <MappingFragment StoreEntitySet="Badge">
+                <ScalarProperty Name="id_Badge" ColumnName="id_Badge" />
+                <ScalarProperty Name="nomBadge" ColumnName="nomBadge" />
+                <ScalarProperty Name="ref_Langues" ColumnName="ref_Langues" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChatRooms">
+            <EntityTypeMapping TypeName="MarcassinModel1.ChatRoom">
+              <MappingFragment StoreEntitySet="ChatRoom">
+                <ScalarProperty Name="idChatRoom" ColumnName="idChatRoom" />
+                <ScalarProperty Name="nomduRoom" ColumnName="nomduRoom" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Competences">
+            <EntityTypeMapping TypeName="MarcassinModel1.Competence">
+              <MappingFragment StoreEntitySet="Competence">
+                <ScalarProperty Name="idCompetence" ColumnName="idCompetence" />
+                <ScalarProperty Name="nomCompetence" ColumnName="nomCompetence" />
+                <ScalarProperty Name="estActif" ColumnName="estActif" />
+                <ScalarProperty Name="ref_Competence" ColumnName="ref_Competence" />
+                <ScalarProperty Name="ref_Langues" ColumnName="ref_Langues" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cours">
+            <EntityTypeMapping TypeName="MarcassinModel1.Cour">
+              <MappingFragment StoreEntitySet="Cours">
+                <ScalarProperty Name="idCours" ColumnName="idCours" />
+                <ScalarProperty Name="nomCours" ColumnName="nomCours" />
+                <ScalarProperty Name="dateCours" ColumnName="dateCours" />
+                <ScalarProperty Name="estFinit" ColumnName="estFinit" />
+                <ScalarProperty Name="ref_ChatRoom" ColumnName="ref_ChatRoom" />
+                <ScalarProperty Name="ref_Competence" ColumnName="ref_Competence" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Entreprises">
+            <EntityTypeMapping TypeName="MarcassinModel1.Entreprise">
+              <MappingFragment StoreEntitySet="Entreprise">
+                <ScalarProperty Name="id_Entreprise" ColumnName="id_Entreprise" />
+                <ScalarProperty Name="nomEntreprise" ColumnName="nomEntreprise" />
+                <ScalarProperty Name="ref_Villes" ColumnName="ref_Villes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Langues">
+            <EntityTypeMapping TypeName="MarcassinModel1.Langue">
+              <MappingFragment StoreEntitySet="Langues">
+                <ScalarProperty Name="idLangue" ColumnName="idLangue" />
+                <ScalarProperty Name="nomLangue" ColumnName="nomLangue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Message2">
+            <EntityTypeMapping TypeName="MarcassinModel1.Message2">
+              <MappingFragment StoreEntitySet="Message2">
+                <ScalarProperty Name="idMessage" ColumnName="idMessage" />
+                <ScalarProperty Name="contenu" ColumnName="contenu" />
+                <ScalarProperty Name="dateMessage" ColumnName="dateMessage" />
+                <ScalarProperty Name="ref_ChatRoom" ColumnName="ref_ChatRoom" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Niveaux">
+            <EntityTypeMapping TypeName="MarcassinModel1.Niveau">
+              <MappingFragment StoreEntitySet="Niveau">
+                <ScalarProperty Name="id_Niveau" ColumnName="id_Niveau" />
+                <ScalarProperty Name="niveau1" ColumnName="niveau" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Notes">
+            <EntityTypeMapping TypeName="MarcassinModel1.Note">
+              <MappingFragment StoreEntitySet="Note">
+                <ScalarProperty Name="id_Note" ColumnName="id_Note" />
+                <ScalarProperty Name="note1" ColumnName="note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pays">
+            <EntityTypeMapping TypeName="MarcassinModel1.Pay">
+              <MappingFragment StoreEntitySet="Pays">
+                <ScalarProperty Name="id_Pays" ColumnName="id_Pays" />
+                <ScalarProperty Name="nomPays" ColumnName="nomPays" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Relation_TCN">
+            <EntityTypeMapping TypeName="MarcassinModel1.Relation_TCN">
+              <MappingFragment StoreEntitySet="Relation_TCN">
+                <ScalarProperty Name="ref_Tuteur" ColumnName="ref_Tuteur" />
+                <ScalarProperty Name="ref_Note" ColumnName="ref_Note" />
+                <ScalarProperty Name="ref_Cours" ColumnName="ref_Cours" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Relation_UCNi">
+            <EntityTypeMapping TypeName="MarcassinModel1.Relation_UCNi">
+              <MappingFragment StoreEntitySet="Relation_UCNi">
+                <ScalarProperty Name="ref_Utilisateur" ColumnName="ref_Utilisateur" />
+                <ScalarProperty Name="ref_Niveau" ColumnName="ref_Niveau" />
+                <ScalarProperty Name="ref_Competence" ColumnName="ref_Competence" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Utilisateurs">
+            <EntityTypeMapping TypeName="MarcassinModel1.Utilisateur">
+              <MappingFragment StoreEntitySet="Utilisateur">
+                <ScalarProperty Name="idUtilisateur" ColumnName="idUtilisateur" />
+                <ScalarProperty Name="prenomUtilisateur" ColumnName="prenomUtilisateur" />
+                <ScalarProperty Name="nomUtilisateur" ColumnName="nomUtilisateur" />
+                <ScalarProperty Name="ageUtilisateur" ColumnName="ageUtilisateur" />
+                <ScalarProperty Name="emailUtilisateur" ColumnName="emailUtilisateur" />
+                <ScalarProperty Name="lienLinkedinUtilisateur" ColumnName="lienLinkedinUtilisateur" />
+                <ScalarProperty Name="motDePasseUtilisateur" ColumnName="motDePasseUtilisateur" />
+                <ScalarProperty Name="estTuteur" ColumnName="estTuteur" />
+                <ScalarProperty Name="estExterne" ColumnName="estExterne" />
+                <ScalarProperty Name="estValide" ColumnName="estValide" />
+                <ScalarProperty Name="ref_Ville" ColumnName="ref_Ville" />
+                <ScalarProperty Name="ref_Entreprise" ColumnName="ref_Entreprise" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Villes">
+            <EntityTypeMapping TypeName="MarcassinModel1.Ville">
+              <MappingFragment StoreEntitySet="Ville">
+                <ScalarProperty Name="id_Ville" ColumnName="id_Ville" />
+                <ScalarProperty Name="nomVille" ColumnName="nomVille" />
+                <ScalarProperty Name="ref_Pays" ColumnName="ref_Pays" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Relation_BCR" TypeName="MarcassinModel1.Relation_BCR" StoreEntitySet="Relation_BCR">
+            <EndProperty Name="ChatRoom">
+              <ScalarProperty Name="idChatRoom" ColumnName="ref_ChatRoom" />
+            </EndProperty>
+            <EndProperty Name="Utilisateur">
+              <ScalarProperty Name="idUtilisateur" ColumnName="ref_Utilisateur" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Relation_BU" TypeName="MarcassinModel1.Relation_BU" StoreEntitySet="Relation_BU">
+            <EndProperty Name="Badge">
+              <ScalarProperty Name="id_Badge" ColumnName="ref_Badge" />
+            </EndProperty>
+            <EndProperty Name="Utilisateur">
+              <ScalarProperty Name="idUtilisateur" ColumnName="ref_Utilisateur" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Relation_UC" TypeName="MarcassinModel1.Relation_UC" StoreEntitySet="Relation_UC">
+            <EndProperty Name="Cours">
+              <ScalarProperty Name="idCours" ColumnName="ref_Cours" />
+            </EndProperty>
+            <EndProperty Name="Utilisateur">
+              <ScalarProperty Name="idUtilisateur" ColumnName="ref_Utilisateur" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="MarcassinModel1.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
